@@ -3,8 +3,8 @@
 # $1 Deployment name
 # $2 Image
 
-DEPLOYMENT_NAME=$1
-IMAGE=$2
+DEPLOYMENT_NAME="notificaciones-service"
+IMAGE="docker.io/cafaray/notificaciones:V7"
 
 echo "Working with values: DEPLOYMENT_NAME = $DEPLOYMENT_NAME & IMAGE = $IMAGE \n"
 echo "starting deployment \n"
