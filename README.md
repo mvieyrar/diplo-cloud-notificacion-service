@@ -144,6 +144,10 @@ tkn pipeline start pipeline-git-clone-build-push-deploy \
 
 For more details in the use of [tekton](https://tekton.dev) in the project, visit [manifest section](./manifests/tekton.md).
 
+## Triggers
+
+This repo contains a Webhook linking an event listener in Openshift to deploy the application.
+
 ## Test
 
 `dev` branch for validate before pre-prod envviroment.
