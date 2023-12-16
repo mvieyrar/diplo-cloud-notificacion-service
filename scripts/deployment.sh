@@ -4,7 +4,7 @@
 # $2 Image
 
 DEPLOYMENT_NAME="notificaciones-service"
-IMAGE="docker.io/cafaray/notificaciones:V7"
+IMAGE="docker.io/cafaray/notificaciones:V8"
 
 echo "Working with values: DEPLOYMENT_NAME = $DEPLOYMENT_NAME & IMAGE = $IMAGE \n"
 echo "starting deployment \n"
