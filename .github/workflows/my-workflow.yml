@@ -16,7 +16,7 @@ jobs:
       - name: Set up OpenShift CLI
         uses: openshift-actions/oc-login@v1
         with:
-          server-url: ${{ secrets.OPENSHIFT_SERVER }}
+          server-url: ${{ secrets.NUUP_ROCKS_URL }}
           username: ${{ secrets.OPENSHIFT_USERNAME }}
           password: ${{ secrets.OPENSHIFT_PASSWORD }}
           insecure: true
