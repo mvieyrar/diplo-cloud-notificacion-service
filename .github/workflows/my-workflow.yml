@@ -26,13 +26,20 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up OpenShift CLI
-        uses: openshift-actions/oc-login@v1
+      - name: Install oc
+        uses: redhat-actions/openshift-tools-installer@v1
         with:
-          server-url: ${{ secrets.NUUP_ROCKS_URL }}
+          oc: 4
+
+      # https://github.com/redhat-actions/oc-login#readme
+      - name: Log in to OpenShift
+        uses: redhat-actions/oc-login@v1
+        with:
+          openshift_server_url: ${{ secrets.NUUP_ROCKS_URL }}
           username: ${{ secrets.OPENSHIFT_USERNAME }}
           password: ${{ secrets.OPENSHIFT_PASSWORD }}
-          insecure: true
+          # openshift_token: ${{ env.OPENSHIFT_TOKEN }}
+          insecure_skip_tls_verify: true
 
       - name: Build and Deploy to OpenShift
         run: |
