@@ -1,6 +1,6 @@
 # Getting Started
 
-## Project
+## Project Notificaciones Service
 
 Implementation of notification microservice for the Pixup application.
 The notification will be created for the following event:
