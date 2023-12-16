@@ -16,7 +16,7 @@ on:
 
 defaults:
   run:
-    working-directory: /
+    working-directory: manifests/
 
 jobs:
   deploy:
@@ -40,7 +40,11 @@ jobs:
           openshift_password: ${{ secrets.OPENSHIFT_PASSWORD }}
           # openshift_token: ${{ env.OPENSHIFT_TOKEN }}
           insecure_skip_tls_verify: true
-
+          
+      - name: Test Working Dir
+        run: |
+          echo "Verifying working directory: " ${pwd} 
+          
       - name: Build and Deploy to OpenShift
         run: |
           oc project tekton-demo
