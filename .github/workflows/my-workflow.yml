@@ -14,11 +14,11 @@ on:
         description: 'Please write the version you want to deploy'
 
 
-  workflow_call:
-    inputs:
-      version:
-        description: 'Version to deploy'
-        default: 'V8'
+    workflow_call:
+      inputs:
+        version:
+          description: 'Version to deploy'
+          default: 'V8'
 
   defaults:
     run:
