@@ -1,0 +1,27 @@
+name: OpenShift Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up OpenShift CLI
+        uses: openshift-actions/oc-login@v1
+        with:
+          server-url: ${{ secrets.OPENSHIFT_SERVER }}
+          username: ${{ secrets.OPENSHIFT_USERNAME }}
+          password: ${{ secrets.OPENSHIFT_PASSWORD }}
+          insecure: true
+
+      - name: Build and Deploy to OpenShift
+        run: |
+          oc project tekton-demo
+          oc apply -f manifests/deployment.yaml
