@@ -1,9 +1,11 @@
 name: OpenShift Deployment
 
-# on:
+on:
 #   push:
 #     branches:
 #       - main
+
+
 
 jobs:
   deploy:
