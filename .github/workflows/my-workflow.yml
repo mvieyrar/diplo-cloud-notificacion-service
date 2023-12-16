@@ -14,33 +14,27 @@ on:
         description: 'Please write the version you want to deploy'
 
 
-    workflow_call:
-      inputs:
-        version:
-          description: 'Version to deploy'
-          default: 'V8'
+defaults:
+  run:
+    working-directory: /
 
-  defaults:
-    run:
-      working-directory: /
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-  jobs:
-    deploy:
-      runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-      steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v2
+      - name: Set up OpenShift CLI
+        uses: openshift-actions/oc-login@v1
+        with:
+          server-url: ${{ secrets.NUUP_ROCKS_URL }}
+          username: ${{ secrets.OPENSHIFT_USERNAME }}
+          password: ${{ secrets.OPENSHIFT_PASSWORD }}
+          insecure: true
 
-        - name: Set up OpenShift CLI
-          uses: openshift-actions/oc-login@v1
-          with:
-            server-url: ${{ secrets.NUUP_ROCKS_URL }}
-            username: ${{ secrets.OPENSHIFT_USERNAME }}
-            password: ${{ secrets.OPENSHIFT_PASSWORD }}
-            insecure: true
-
-        - name: Build and Deploy to OpenShift
-          run: |
-            oc project tekton-demo
-            oc apply -f manifests/notificaciones.yaml
+      - name: Build and Deploy to OpenShift
+        run: |
+          oc project tekton-demo
+          oc apply -f manifests/notificaciones.yaml
